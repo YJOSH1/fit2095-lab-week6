@@ -103,7 +103,7 @@ app.post('/parceldelete', function (req, res) {
 });
 
 app.post('/getparcelsbysender', function (req, res) {
-    let sender = req.body.sender;
+    let sender = req.body.sender.toLowerCase();
 
     Parcel.where({sender: sender}).exec(function (err, parcels) {
         res.render('listparcel.html', {parcelDB: parcels, pageTitle: "All Parcels From " + sender});
