@@ -106,11 +106,7 @@ app.post('/getparcelsbysender', function (req, res) {
     let sender = req.body.sender;
 
     Parcel.where({sender: sender}).exec(function (err, parcels) {
-        if (parcels.length > 0) {
-            res.render('listparcel.html', {parcelDB: parcels, pageTitle: "All Parcels From " + sender})
-        } else {
-            res.render('invaliddata.html');
-        }
+        res.render('listparcel.html', {parcelDB: parcels, pageTitle: "All Parcels From " + sender});
     })
 });
 
