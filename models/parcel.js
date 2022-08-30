@@ -7,15 +7,33 @@ let parcelSchema = mongoose.Schema({
     },
     sender: {
         type: string,
-        required: true
+        required: true,
+        validate: {
+            validator: function (sender) {
+                return sender.length >=3;
+            },
+            message: 'Sender name must be greater than 3 characters'
+        }
     },
     address: {
         type: string,
-        required: true
+        required: true,
+        validate: {
+            validator: function (address) {
+                return address.length >=3;
+            },
+            message: 'Address name must be greater than 3 characters'
+        }
     },
     weight: {
         type: number,
-        required: true
+        required: true,
+        validate: {
+            validator: function (weight) {
+                return weight > 0;
+            },
+            message: 'Weight must be greater than 0'
+        }
     },
     fragile: {
         type: Boolean,
