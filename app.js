@@ -1,3 +1,4 @@
+const e = require('express');
 let express = require('express');
 let app = express();
 
@@ -49,17 +50,36 @@ app.post('/parcelnew', function (req, res) {
     let sender = req.body.sender;
     let address = req.body.address;
     let weight = parseInt(req.body.weight);
-    let cost = parseInt(req.body.cost);
-    let fragile = req.body.fragile;
+    let fragile;
+    if (req.body.fragile === 'yes') {
+        fragile = true;
+    } else {
+        fragile = false;
+    }
     
-    //db query
+    let newParcel = new Parcel ({
+        _id: new mongoose.Types.ObjectId(),
+        sender: sender,
+        address: address,
+        weight: weight,
+        fragile: fragile
+    });
+
+    newParcel.save(function (err) {
+        if (err) {
+            console.log('Error cannot add parcel');
+            throw err
+        }
+        console.log('Parcel added successfully');
+    });
+
+    res.redirect('/getparcels');
 });
 
 app.post('/parcelupdate', function (req, res) {
     let parcelId = req.body.id;
     let sender = req.body.sender;
     let address = req.body.address;
-    let cost = parseInt(req.body.cost);
     let weight = parseInt(req.body.weight);
     let fragile = req.body.fragile;
 
@@ -68,8 +88,16 @@ app.post('/parcelupdate', function (req, res) {
 
 app.post('/parceldelete', function (req, res) {
     let parcelId = req.body.id;
-    let weight = parseInt(req.body.weight);
-    //db query
+    
+    Parcel.deleteOne({_id: parcelId}, function (err, parcel) {
+        if (parcel.deletedCount === 1) {
+            console.log('Parcel deleted successfully');
+            res.redirect('/getparcels');
+        } else {
+            console.log('Error, no parcel with that ID');
+            res.render('invalidid.html');
+        }
+    });
 });
 
 //get
@@ -82,8 +110,8 @@ app.get('/addparcel', function (req, res) {
 });
 
 app.get('/getparcels', function (req, res) {
-    db.collection('week5lab').find({}).toArray(function (err, result) {
-        res.render('listparcel.html', {parcelDB: result});
+    Parcel.find({}, function (err, parcels) {
+        res.render('listparcel.html', {parcelDB: parcels})
     });
 });
 
