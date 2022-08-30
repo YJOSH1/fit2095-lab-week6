@@ -4,6 +4,7 @@ let app = express();
 
 //initialise DB
 const mongoose = require('mongoose');
+const parcel = require('./models/parcel');
 const url= 'mongodb://localhost:27017/poms';
 const Parcel = require('./models/parcel');
 mongoose.connect(url, function (err) {
@@ -101,6 +102,18 @@ app.post('/parceldelete', function (req, res) {
     });
 });
 
+app.post('/getparcelsysender', function (req, res) {
+    let sender = req.body.sender;
+
+    Parcel.where({sender: sender}).exec(function (err, parcels) {
+        if (parcels.length > 0) {
+            res.render('listparcel.html', {parcelDB: parcels, pageTitle: "All Parcels From " + sender})
+        } else {
+            res.render('invaliddata.html');
+        }
+    })
+});
+
 //get
 app.get('/', function (req, res) {
     res.render('index.html');
@@ -112,7 +125,7 @@ app.get('/addparcel', function (req, res) {
 
 app.get('/getparcels', function (req, res) {
     Parcel.find({}, function (err, parcels) {
-        res.render('listparcel.html', {parcelDB: parcels})
+        res.render('listparcel.html', {parcelDB: parcels, pageTitle: "All Parcels"})
     });
 });
 
