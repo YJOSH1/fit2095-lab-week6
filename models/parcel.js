@@ -6,7 +6,7 @@ let parcelSchema = mongoose.Schema({
         auto: true
     },
     sender: {
-        type: string,
+        type: String,
         required: true,
         validate: {
             validator: function (sender) {
@@ -16,7 +16,7 @@ let parcelSchema = mongoose.Schema({
         }
     },
     address: {
-        type: string,
+        type: String,
         required: true,
         validate: {
             validator: function (address) {
@@ -26,7 +26,7 @@ let parcelSchema = mongoose.Schema({
         }
     },
     weight: {
-        type: number,
+        type: Number,
         required: true,
         validate: {
             validator: function (weight) {

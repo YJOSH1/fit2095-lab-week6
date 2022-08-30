@@ -2,16 +2,15 @@ let express = require('express');
 let app = express();
 
 //initialise DB
-const mongodb = require('mongodb');
-const MongoClient = mongodb.MongoClient;
-const url = 'mongodb://localhost:27017/';
-MongoClient.connect(url, {useNewUrlParser: true}, function (err, client) {
+const mongoose = require('mongoose');
+const url= 'mongodb://localhost:27017/poms';
+const Parcel = require('./models/parcel');
+mongoose.connect(url, function (err) {
     if (err) {
-        console.log('Err  ', err);
-    } else {
-        console.log("Connected successfully to server");
-        db = client.db('fit2095');
+        console.log('Error in mongoose connection');
+        throw err;
     }
+    console.log('Successfully connected to mongoose');
 });
 
 //allows use of ejs rendering engine, configures express app to handle engine
@@ -53,12 +52,7 @@ app.post('/parcelnew', function (req, res) {
     let cost = parseInt(req.body.cost);
     let fragile = req.body.fragile;
     
-    if (sender.length < 3 || address.length < 3 || weight < 0) {
-        res.render('invaliddata.html');
-    } else {
-        db.collection('week5lab').insertOne({sender: sender, address: address, weight: weight, cost: cost, fragile: fragile});
-        res.redirect('/getparcels');
-    }
+    //db query
 });
 
 app.post('/parcelupdate', function (req, res) {
@@ -69,28 +63,13 @@ app.post('/parcelupdate', function (req, res) {
     let weight = parseInt(req.body.weight);
     let fragile = req.body.fragile;
 
-    db.collection('week5lab').updateOne({_id: mongodb.ObjectId(parcelId)}, {$set: {sender: sender, address: address, weight: weight, cost: cost, fragile: fragile}}, function (err, result) {
-        if (err) {
-            throw err;
-        } else {
-            res.redirect('/getparcels');
-        }
-    });
+    //db query
 });
 
 app.post('/parceldelete', function (req, res) {
     let parcelId = req.body.id;
     let weight = parseInt(req.body.weight);
-
-    db.collection('week5lab').deleteOne({_id: mongodb.ObjectId(parcelId), weight: weight}, function (err, obj) {
-        if (err) {
-            throw err;
-        } else if (obj.deletedCount != 1) {
-            res.render('invaliddata.html');
-        } else {
-            res.redirect('/getparcels');
-        }
-    });
+    //db query
 });
 
 //get
