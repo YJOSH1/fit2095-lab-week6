@@ -50,12 +50,7 @@ app.post('/parcelnew', function (req, res) {
     let sender = req.body.sender;
     let address = req.body.address;
     let weight = parseInt(req.body.weight);
-    let fragile;
-    if (req.body.fragile === 'yes') {
-        fragile = true;
-    } else {
-        fragile = false;
-    }
+    let fragile = req.body.fragile;
     
     let newParcel = new Parcel ({
         _id: new mongoose.Types.ObjectId(),
@@ -83,7 +78,13 @@ app.post('/parcelupdate', function (req, res) {
     let weight = parseInt(req.body.weight);
     let fragile = req.body.fragile;
 
-    //db query
+    Parcel.updateOne({_id: parcelId}, {$set: {sender: sender, address: address, weight: weight, fragile: fragile}}, function (err, parcel) {
+        if (parcel.modifiedCount === 1) {
+            res.redirect('/getparcels');
+        } else {
+            res.render('invalidid.html');
+        }
+    });
 });
 
 app.post('/parceldelete', function (req, res) {
