@@ -124,6 +124,14 @@ app.get('/updateparcel', function (req, res) {
     res.render('updateparcel.html');
 });
 
+app.get('/getparcelssender', function (req, res) {
+    res.render('listparcelsender.html');
+})
+
+app.get('/getparcelsweight', function (req, res) {
+    res.render('listpracelweight.html');
+});
+
 app.get('*', function (req, res) {
     res.render('404.html');
 });
