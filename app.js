@@ -129,7 +129,7 @@ app.get('/getparcelssender', function (req, res) {
 })
 
 app.get('/getparcelsweight', function (req, res) {
-    res.render('listpracelweight.html');
+    res.render('listparcelweight.html');
 });
 
 app.get('*', function (req, res) {
