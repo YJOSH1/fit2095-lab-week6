@@ -102,7 +102,7 @@ app.post('/parceldelete', function (req, res) {
     });
 });
 
-app.post('/getparcelsysender', function (req, res) {
+app.post('/getparcelsbysender', function (req, res) {
     let sender = req.body.sender;
 
     Parcel.where({sender: sender}).exec(function (err, parcels) {
@@ -111,6 +111,15 @@ app.post('/getparcelsysender', function (req, res) {
         } else {
             res.render('invaliddata.html');
         }
+    })
+});
+
+app.post('/getparcelsbyweight', function (req, res) {
+    let minWeight = req.body.minweight;
+    let maxWeight = req.body.maxweight;
+
+    Parcel.find().where('weight').gte(minWeight).lte(maxWeight).exec(function (err, parcels) {
+        res.render('listparcel.html', {parcelDB: parcels, pageTitle: "All parcels >= " + minWeight + "kg and <= " + maxWeight + "kg"});
     })
 });
 
