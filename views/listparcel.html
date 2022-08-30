@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>All Parcels</title>
+</head>
+<body>
+    <h1>All Parcels</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Sender</th>
+            <th>Address</th>
+            <th>Weight</th>
+            <th>Cost</th>
+            <th>Fragile?</th>
+        </tr>
+        <% for (let i = 0; i < parcelDB.length; i++) { %>
+            <tr>
+                <td>
+                    <%= parcelDB[i]._id %>
+                </td>
+                <td>
+                    <%= parcelDB[i].sender %>
+                </td>
+                <td>
+                    <%= parcelDB[i].address %>
+                </td>
+                <td>
+                    <%= parcelDB[i].weight %>
+                </td>
+                <td>
+                    <%= parcelDB[i].cost %>
+                </td>
+                <td>
+                    <%= parcelDB[i].fragile %>
+                </td>
+            </tr>
+        <% } %>
+    </table>  
+    <a href="/">Back To Home</a>
+</body>
+</html>

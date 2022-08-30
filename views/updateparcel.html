@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Update Parcel</title>
+</head>
+<body>
+    <h1>Update Parcel</h1>
+    <form action="/parcelupdate" method="POST">
+        ID
+        <input type="text" name="id" required></br>
+        Sender
+        <input type="text" name="sender" required></br>
+        Address
+        <input type="text" name="address" required></br>
+        Weight
+        <input type="number" name="weight" required></br>
+        Cost
+        <input type="number" name="cost" required></br>
+        Fragile?
+        <select name="fragile" id="fragile" required>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select><br>
+        <button>Update Parcel</button>
+    </form>
+    <a href="/">Back To Home</a>
+</body>
+</html>
