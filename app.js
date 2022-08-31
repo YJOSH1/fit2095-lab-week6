@@ -48,10 +48,10 @@ app.use(['/parceldelete', '/parcelupdate'], function (req, res, next) {
 
 //post
 app.post('/parcelnew', function (req, res) {
-    let sender = req.body.sender;
-    let address = req.body.address;
+    let sender = req.body.sender.toLowerCase();
+    let address = req.body.address.toLowerCase();
     let weight = parseInt(req.body.weight);
-    let fragile = req.body.fragile;
+    let fragile = req.body.fragile.toLowerCase();
     
     let newParcel = new Parcel ({
         _id: new mongoose.Types.ObjectId(),
@@ -73,11 +73,11 @@ app.post('/parcelnew', function (req, res) {
 });
 
 app.post('/parcelupdate', function (req, res) {
-    let parcelId = req.body.id;
-    let sender = req.body.sender;
-    let address = req.body.address;
+    let parcelId = req.body.id.toLowerCase();
+    let sender = req.body.sender.toLowerCase();
+    let address = req.body.address.toLowerCase();
     let weight = parseInt(req.body.weight);
-    let fragile = req.body.fragile;
+    let fragile = req.body.fragile.toLowerCase();
 
     Parcel.updateOne({_id: parcelId}, {$set: {sender: sender, address: address, weight: weight, fragile: fragile}}, function (err, parcel) {
         if (parcel.modifiedCount === 1) {
