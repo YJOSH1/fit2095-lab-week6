@@ -19,22 +19,8 @@
         <a type="button" class="btn btn-primary" href="/updateparcel">Update Parcel</a>
         <a type="button" class="btn btn-primary" href="/deleteparcel">Delete Parcel</a>
     </div>
-    <!-- <form action="/parcelnew" method="POST">
-        Sender
-        <input type="text" name="sender" required></br>
-        Address
-        <input type="text" name="address" required></br>
-        Weight
-        <input type="number" name="weight" required></br>
-        Fragile?
-        <select name="fragile" id="fragile" required>
-            <option value="yes">True</option>
-            <option value="no">False</option>
-        </select><br>
-        <button>Add Parcel</button>
-    </form> -->
     <div class="form">
-        <form>
+        <form action="/parcelnew" method="post">
             <div class="form-group">
               <label for="sender">Sender</label>
               <input type="text" class="form-control form-control-lg" id="sender" name="sender" placeholder="Max">
@@ -50,14 +36,12 @@
             <div class="form-group">
                 <label for="fragile">Fragile?</label>
                 <select class="form-control" id="fragile" name="fragile">
-                  <option>True</option>
-                  <option>False</option>
+                  <option>true</option>
+                  <option>false</option>
                 </select>
               </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Add Parcel</button>
         </form>
-    </div>
-
-    
+    </div>      
 </body>
 </html>

@@ -33,7 +33,7 @@ app.set('port', 8080);
 
 //middleware
 app.use(['/parcelnew', '/parcelupdate'], function (req, res, next) {
-    if (req.body.sender.length < 3 || req.body.address.length < 3 || req.body.weight < 0) {
+    if (req.body.sender.length < 3 || req.body.address.length < 3 || req.body.weight <= 0) {
         res.render('invaliddata.html');
     } else {
         next();
