@@ -18,5 +18,8 @@ img {
 }
 
 table, th, td {
+    border-collapse: collapse;
+    table-layout: fixed;
     margin-top: 50px;
 }
+
