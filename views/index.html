@@ -4,17 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
     <title>POMS</title>
 </head>
-<body>
-    <img src="mailbox.svg" alt="mailbox">
-    <h1>Welcome to Post Office Management System (POMS)</h1>
-    <a href="/addparcel">Add New Parcel</a><br>
-    <a href="/getparcels">List All Parcels</a><br>
-    <a href="/getparcelssender">List All Parcels By Sender</a><br>
-    <a href="/getparcelsweight">List All Parcels By Weight</a><br>
-    <a href="/updateparcel">Update Parcel</a><br>
-    <a href="/deleteparcel">Delete Parcel</a>
+<body class="container">
+    <div class="text-center">
+        <h1>Welcome to Post Office Management System (POMS)</h1>
+        <a type="button" class="btn btn-primary" href="/">Home</a>
+        <a type="button" class="btn btn-primary" href="/addparcel">Add New Parcel</a>
+        <a type="button" class="btn btn-primary" href="/getparcels">List All Parcels</a>
+        <a type="button" class="btn btn-primary" href="/getparcelssender">List All Parcels By Sender</a>
+        <a type="button" class="btn btn-primary" href="/getparcelsweight">List All Parcels By Weight</a>
+        <a type="button" class="btn btn-primary" href="/updateparcel">Update Parcel</a>
+        <a type="button" class="btn btn-primary" href="/deleteparcel">Delete Parcel</a>
+        <img src="mailbox.svg" alt="mailbox">
+    </div>
 </body>
 </html>

@@ -27,6 +27,8 @@ app.use(express.json())
 app.use(express.static('images'));
 app.use(express.static('css'));
 
+//bootstrap
+
 app.set('port', 8080);
 
 //middleware
