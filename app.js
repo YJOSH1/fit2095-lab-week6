@@ -102,6 +102,24 @@ app.post('/parceldelete', function (req, res) {
     });
 });
 
+app.post('/parceldeleteall', function (req, res) {
+    let delCrit = req.body.deleteallby;
+
+    if (delCrit === 'weight') {
+        let delVal = parseInt(req.body.input);
+        Parcel.deleteMany({weight: delVal}, function (err, parcel) {});
+        res.redirect('/getparcels');
+    } else if (delCrit === 'address') {
+        let delVal = req.body.input.toLowerCase();
+        Parcel.deleteMany({address: delVal}, function (err, parcel) {});
+        res.redirect('/getparcels');
+    } else if (delCrit === 'fragile') {
+        let delVal = req.body.input.toLowerCase();
+        Parcel.deleteMany({fragile: delVal}, function (err, parcel) {});
+        res.redirect('/getparcels');
+    }
+});
+
 app.post('/getparcelsbysender', function (req, res) {
     let sender = req.body.sender.toLowerCase();
 
